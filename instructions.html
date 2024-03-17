@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playpen+Sans&display=swap">
+    <title>Letter Guess - Instructions</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+</head>
+<body>
+    <div class="container">
+        <h1>Letter Guess - Instructions</h1>
+        <div class="card">
+            <h2 data-lang="guess-word-heading">Guess the Word</h2>
+            <p data-lang="guess-word-description">Guess letters to reveal the word. Each correct guess reveals letters in their correct positions. Incorrect guesses result in lost attempts.</p>
+        </div>
+        <div class="card">
+            <h2 data-lang="attempts-hints-heading">Attempts & Hints</h2>
+            <p data-lang="attempts-hints-description">You have 12 attempts to guess the word. Receive a hint every 4 attempts.</p>
+        </div>
+        <div class="card">
+            <h2 data-lang="winning-losing-heading">Winning & Losing</h2>
+            <p data-lang="winning-losing-description">Win by correctly guessing the word within attempts. Lose if attempts are exhausted without guessing the word.</p>
+        </div>
+        <div class="card">
+            <h2 data-lang="share-score-heading">Share Your Score</h2>
+            <p data-lang="share-score-description">Share your high score on Twitter. Challenge friends to beat your score.</p>
+        </div>
+        <a href="https://twitter.com/intent/tweet?url=YOUR_GAME_URL_HERE&text=I just played Letter Guess and scored X points! Can you beat my score? #LetterGuess" target="_blank" id="share-twitter-btn">Share on Twitter</a>
+        <a href="index.html" id="back-to-game-btn">Back to Game</a> <!-- Link zurück zum Spiel -->
+        <button id="close-btn">&times;</button> <!-- X-Button für das Schließen des Popups -->
+
+       
+    </div>
+    
+    <script src="popup.js"></script>
+</body>
+</html>

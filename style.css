@@ -1,0 +1,186 @@
+/* Icon-Stile */
+.icon {
+    font-size: 24px; /* Größe des Icons */
+    color: #ff69b4; /* Farbe des Icons */
+}
+
+body {
+    background-color: #ffe4b5; /* Pfirsichfarbener Hintergrund */
+    color: #000000; /* Schwarzer Text */
+    font-family: 'Playpen Sans', sans-serif; /* Playpen Sans als Schriftart */
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    text-align: center;
+    margin-top: 50px;
+}
+
+h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+    color: #ff69b4; /* Pinker Text */
+}
+
+/* Dropdown-Menü */
+#language-select {
+    font-size: 16px;
+    padding: 8px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    color: #000;
+    outline: none;
+    transition: border-color 0.3s, background-color 0.3s, transform 0.3s;
+}
+
+#language-select:hover {
+    border-color: #ff69b4;
+}
+
+#language-select:focus {
+    border-color: #ff69b4;
+    background-color: #f0f0f0;
+    transform: scale(1.05);
+}
+
+/* Scrollleiste */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #555;
+}
+
+/* Animation für Schaltflächen */
+button, #new-word-btn {
+    background-color: #add8e6; /* Hellblauer Hintergrund */
+    color: #ffffff; /* Weißer Text */
+    padding: 15px 30px; /* Größere Polsterung für ein deutlicheres Erscheinungsbild */
+    border: none;
+    border-radius: 30px;
+    font-size: 24px;
+    transition: background-color 0.3s, transform 0.3s; /* Sanfter Übergang für Hintergrundfarbe und Transformationen */
+    cursor: pointer;
+}
+
+button:hover, #new-word-btn:hover {
+    background-color: #87ceeb; /* Dunklerer Blauton beim Überfahren mit der Maus */
+    transform: scale(1.05); /* Vergrößerungseffekt beim Überfahren mit der Maus */
+}
+
+button:active, #new-word-btn:active {
+    transform: scale(0.95); /* Verkleinerungseffekt beim Klicken */
+}
+
+/* Zusätzliche Stile für spezielle Elemente */
+#new-word-btn {
+    background-color: #ff6347; /* Tomatenrote Farbe für Neues-Wort-Button */
+}
+
+#new-word-btn:hover {
+    background-color: #ff4500; /* Leuchtendes Orange beim Überfahren mit der Maus */
+}
+
+#guessed-words {
+    color: #ff0000; /* Rote Farbe für geratene Wörter */
+}
+
+/* Links-Stile */
+a {
+    color: #ff69b4; /* Pink für Links */
+    text-decoration: none; /* Entfernt die Standard-Link-Unterstreichung */
+    transition: color 0.3s; /* Sanfter Übergang für Linkfarbe */
+}
+
+a:hover {
+    color: #ff1493; /* Helligkeit des Links beim Überfahren mit der Maus */
+}
+/* CSS-Klasse für die Animation des geratenen Buchstabens */
+.animate-guessed-letter {
+    animation: fadeIn 1s ease-in-out;
+}
+
+/* Keyframe-Animation für den Buchstaben */
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+/* Media Queries für responsives Design */
+@media only screen and (max-width: 768px) {
+    /* Stile für Tablets und kleinere Bildschirme */
+    .container {
+        margin-top: 30px;
+    }
+    
+    h1 {
+        font-size: 36px;
+    }
+    
+    button, #new-word-btn {
+        font-size: 20px;
+        padding: 10px 20px;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    /* Stile für Handys und kleinere Bildschirme */
+    h1 {
+        font-size: 24px;
+    }
+    
+    button, #new-word-btn {
+        font-size: 16px;
+        padding: 8px 16px;
+    }
+}
+
+/* Stile für Eingabefeld */
+.input-container {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+label {
+    font-size: 24px;
+}
+
+input[type="text"] {
+    font-size: 24px;
+    padding: 10px;
+    border-radius: 10px;
+    border: 2px solid #ff69b4;
+    margin-left: 10px;
+}
+
+/* Kinderfreundliche Texte */
+p {
+    font-size: 24px;
+}
+
+.language-dropdown label {
+    font-size: 24px;
+}
+.footer {
+    text-align: center;
+}
+
+.logo {
+    width: 30px; /* Sie können die Breite entsprechend Ihren Anforderungen ändern */
+    height: auto; /* Damit das Seitenverhältnis der Bilder beibehalten wird */
+    vertical-align: middle; /* Für eine vertikal zentrierte Ausrichtung */
+}

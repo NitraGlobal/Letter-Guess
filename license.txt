@@ -1,0 +1,23 @@
+Letter Guess Game License
+
+Version 1.0, 2024
+
+Developed by Nitra Global (Team: zyroleak, MMM_Dev, L4F)
+
+This software is the property of Nitra Global and is provided under the following license:
+
+1. Permission to Use: This software may be used by individuals or groups exclusively for entertainment purposes. Any other use, including but not limited to copying, remixing, republication, or distribution in any form, is expressly prohibited.
+
+2. Restrictions: Any modifications, derivations, or adaptations of this software are not permitted without the express written permission of Nitra Global. Decompiling or reverse-engineering the code is also prohibited.
+
+3. Copyright Notices: This software includes music by Kevin MacLeod and sound effects by LIECIO, whose copyright notices are included in the game. The Comic Sans MS font is also used.
+
+4. Disclaimer: Nitra Global shall not be liable for any damages or losses arising out of the use of this software.
+
+5. No Warranty: This software is provided "as is" without warranty of any kind, express or implied, including but not limited to the warranties of merchantability, fitness for a particular purpose, and non-infringement.
+
+6. Termination: Nitra Global reserves the right to terminate this license at any time if the terms of the license are violated.
+
+7. Governing Law: This license shall be governed by and construed in accordance with the laws of Germany.
+
+By using this software, you agree to these terms. If you have any questions about the license or use of the software, please contact Nitra Global (NitraDE@ok.de)

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <!-- Google Font Icons einbinden -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playpen+Sans&display=swap">
+    <title>Letter Guess</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon"> <!-- Favicon hinzugefügt -->
+</head>
+<body>
+    <audio autoplay loop aria-label="Background Music">
+        <source src="Sergios Magic Dustbin.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    
+    <div class="container">
+        <h1>Letter Guess</h1>
+        <div id="word-info">
+            <p id="current-word"></p>
+            <p>
+            </p>
+            <ul id="guessed-words" aria-live="polite" aria-relevant="additions"></ul>
+        </div>
+        <div id="word-container" aria-label="Word Display"></div>
+        <div class="input-container">
+            <label for="guess-letter">Guess a letter:</label>
+            <input type="text" id="guess-letter" placeholder="Guess a letter" aria-label="Guess Input">
+            <!-- Google Font Icon für den Guess-Button -->
+            <button id="guess-letter-btn"><i class="material-icons">keyboard</i> Guess</button>
+        </div>
+        <p id="message" aria-live="assertive"></p>
+        <p id="hint"></p>
+        <p id="timer">Timer: <span id="timer-value">15</span></p>
+        <button id="new-word-btn"><i class="material-icons">refresh</i> New Word</button>
+        <button id="settings-btn"><i class="material-icons">settings</i> Settings</button>
+    </div>
+    <a href="instructions.html">Game Rules and Tutorial</a>
+    <a href="popup.html">Music Consent</a>
+    <a href="credits.html">Game Version</a>
+
+    <div id="settings-modal" class="modal">
+        <div class="modal-content">
+            <span id="close-settings-btn" class="close">&times;</span>
+            <h2>Game Settings</h2>
+            <label for="attempts-input">Number of Attempts:</label>
+            <input type="number" id="attempts-input" min="1" value="12">
+            <label for="hints-per-attempt-input">Hints Per Attempt:</label>
+            <input type="number" id="hints-per-attempt-input" min="1" value="2">
+            <label for="timer-enabled-input">Enable Timer:</label>
+            <input type="checkbox" id="timer-enabled-input" checked>
+            <label for="timer-increase-input">Timer Increase (seconds):</label>
+            <input type="number" id="timer-increase-input" min="1" value="2">
+            <button id="save-settings-btn">Save Settings</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <audio id="button-sound">
+        <source src="achive-sound-132273.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="language-dropdown">
+        <label for="language-select">Select Language:</label>
+        <select id="language-select">
+            <option value="en">English</option>
+        </select>
+    </div>
+    
+</body>
+</html>

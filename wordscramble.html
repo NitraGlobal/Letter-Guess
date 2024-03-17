@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <!-- Google Font Icons einbinden -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playpen+Sans&display=swap">
+    <title>Letter Guess</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon"> <!-- Favicon hinzugefügt -->
+    <style>
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin-top: 50px;
+        }
+        .row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .word-cell, .guess-cell {
+            border: 2px solid #000;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 5px;
+        }
+        .guess-cell {
+            cursor: pointer;
+        }
+        .green-border {
+            border-color: green;
+        }
+        .red-border {
+            border-color: red;
+        }
+        .hint-button {
+            margin-top: 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 id="title">Letter Guess <i class="material-icons">casino</i></h1>
+        <div id="word-row" class="row"></div>
+        <div id="guess-row" class="row"></div>
+        <button id="check-letter-btn">Check <i class="material-icons">check_circle</i></button>
+        <button id="new-word-btn">New Word <i class="material-icons">refresh</i></button>
+        <p id="message"></p>
+        <button id="hint-btn" class="hint-button">Hint <i class="material-icons">lightbulb</i></button>
+        <div>
+            <label for="language-select">Select Language:</label>
+            <select id="language-select">
+                <option value="en">English</option>
+                <option value="de">Deutsch</option>
+            </select>
+        </div>
+    </div>
+
+    <script>
+       document.addEventListener('DOMContentLoaded', function() {
+    const wordRow = document.getElementById('word-row');
+    const guessRow = document.getElementById('guess-row');
+    const guessLetterInput = document.getElementById('guess-letter');
+    const checkLetterBtn = document.getElementById('check-letter-btn');
+    const newWordBtn = document.getElementById('new-word-btn'); // Neuer Button hinzugefügt
+    const hintBtn = document.getElementById('hint-btn'); // Neuer Hinweis-Button hinzugefügt
+    const feedbackMessage = document.getElementById('message');
+    const languageSelect = document.getElementById('language-select');
+    const title = document.getElementById('title');
+
+    let mixedWord = '';
+    let correctWord = '';
+    let language = 'en';
+
+    function generateMixedWord() {
+        let apiUrl = 'https://random-word-api.herokuapp.com/word?number=1';
+        if (language === 'de') {
+            apiUrl += '&lang=de';
+        }
+
+        fetch(apiUrl)
+            .then(response => response.json())
+            .then(data => {
+                mixedWord = mixWord(data[0]);
+                correctWord = data[0];
+                displayMixedWord();
+            })
+            .catch(error => console.error('Error fetching mixed word:', error));
+    }
+
+    function mixWord(word) {
+        return word.split('').sort(() => Math.random() - 0.5).join('');
+    }
+
+    function displayMixedWord() {
+        wordRow.innerHTML = '';
+        mixedWord.split('').forEach(letter => {
+            const letterBox = document.createElement('div');
+            letterBox.classList.add('word-cell');
+            letterBox.textContent = letter;
+            wordRow.appendChild(letterBox);
+        });
+
+        guessRow.innerHTML = '';
+        for (let i = 0; i < mixedWord.length; i++) {
+            const guessBox = document.createElement('input');
+            guessBox.setAttribute('type', 'text');
+            guessBox.setAttribute('maxlength', '1');
+            guessBox.classList.add('guess-cell');
+            guessRow.appendChild(guessBox);
+        }
+    }
+
+    function checkLetterPlacement() {
+        const userGuess = guessRow.querySelectorAll('input');
+        let allCorrect = true;
+
+        userGuess.forEach((guessBox, index) => {
+            const userLetter = guessBox.value.trim().toLowerCase();
+            if (userLetter.length !== 1 || !userLetter.match(/[a-z]/i)) {
+                feedbackMessage.textContent = 'Please enter a single letter.';
+                return;
+            }
+
+            const correctLetter = correctWord[index];
+            if (userLetter === correctLetter) {
+                guessBox.style.backgroundColor = 'green';
+            } else {
+                guessBox.style.backgroundColor = 'red';
+                allCorrect = false;
+            }
+        });
+
+        if (allCorrect) {
+            feedbackMessage.textContent = 'All letters are correct!';
+        } else {
+            feedbackMessage.textContent = 'Some letters are incorrect.';
+        }
+    }
+
+    function giveHint() { // Funktion für den Hinweis-Button hinzugefügt
+        const guessedLetters = Array.from(new Set(correctWord));
+        const remainingLetters = guessedLetters.filter(letter => !guessRow.querySelector(`input[value='${letter}']`));
+        if (remainingLetters.length === 0) {
+            alert(language === 'en' ? 'You already have all the letters!' : 'Du hast bereits alle Buchstaben!');
+            return;
+        }
+        const randomIndex = Math.floor(Math.random() * remainingLetters.length);
+        const hintLetter = remainingLetters[randomIndex];
+        const hintIndex = correctWord.indexOf(hintLetter);
+        alert((language === 'en' ? 'Hint: The word contains the letter "' : 'Hinweis: Das Wort enthält den Buchstaben "') + hintLetter.toUpperCase() + '" at position ' + (hintIndex + 1) + '.');
+    }
+
+    checkLetterBtn.addEventListener('click', function() {
+        checkLetterPlacement();
+    });
+
+    newWordBtn.addEventListener('click', function() { // Event-Listener für den neuen Button hinzugefügt
+        generateMixedWord();
+    });
+
+    hintBtn.addEventListener('click', function() { // Event-Listener für den Hinweis-Button hinzugefügt
+        giveHint();
+    });
+
+    languageSelect.addEventListener('change', function() {
+        language = languageSelect.value;
+        title.textContent = language === 'en' ? 'Letter Guess' : 'Buchstabenraten';
+        generateMixedWord();
+    });
+
+    generateMixedWord();
+});
+
+    </script>
+</body>
+</html>

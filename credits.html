@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playpen+Sans&display=swap">
+    <title>Credits</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <style>
+        /* CSS für Ladebildschirm */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+        /* CSS für Footer */
+        .footer {
+            text-align: center;
+        }
+
+        .logo {
+            width: 30px;
+            height: auto;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+    <!-- Ladebildschirm -->
+    <div class="loading-screen">
+        <img src="icon128.png" alt="Loading..." width="100">
+    </div>
+
+    <div class="container" style="display:none;"> <!-- Verstecken, bis geladen -->
+        <h1>Credits</h1>
+        <div class="language-dropdown">
+            <select id="language-select" onchange="changeLanguage()">
+                <option value="en">English</option>
+                <option value="de">Deutsch</option>
+            </select>
+        </div>
+        <div class="section">
+            <h2><span data-lang="music">Music</span></h2>
+            <p><span data-lang="music-credits">Credits for the background music:</span></p>
+            <p>"Sergio's Magic Dustbin" by Kevin MacLeod (incompetech.com)<br>
+            <span data-lang="license">Licensed under Creative Commons: By Attribution 4.0 License</span><br>
+            <a href="http://creativecommons.org/licenses/by/4.0/">http://creativecommons.org/licenses/by/4.0/</a></p>
+        </div>
+        <div class="section">
+            <h2><span data-lang="font">Font</span></h2>
+            <p><span data-lang="font-credits">Credits for the font:</span></p>
+            <p><span data-lang="font-name">Playpen Sans on Google Fonts</span></p>
+        </div>
+        <div class="section">
+            <h2><span data-lang="sound-effects">Sound Effects</span></h2>
+            <p><span data-lang="sound-credits">Credits for the button sound effect:</span></p>
+            <p><span data-lang="sound-effect-by">Sound Effect by</span> <a href="https://pixabay.com/users/liecio-3298866/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=132273">LIECIO</a> <span data-lang="from">from</span> <a href="https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=132273">Pixabay</a></p>
+        </div>
+        <div class="section">
+            <h2><span data-lang="game-development-studio">Game Development Studio</span></h2>
+            <p><span data-lang="game-development-studio">Game Development Studio:</span> Nitra Global</p>
+            <p><span data-lang="game-developers">Game Developers:</span> zyroleak, MMM_Dev, L4F</p>
+        </div>
+        <div class="section">
+            <h2>License</h2>
+            <p>You can see the license <a href="license.txt">here</a>.</p>
+            <div class="section">
+                <h2>Nitra Global / Legal - 1.0</h2>
+                <p>&copy; 2024 Nitra Global. All rights reserved. Last update on 10. March, 2024. Game Version 3.2.5</p>
+                <p>By using this software, you agree to our <a href="terms-of-use.html">Terms of Use</a> and <a href="privacy-policy.html">Privacy Policy</a>.</p>
+                <p>Nitra Global shall not be liable for any damages or losses arising out of the use of this software.</p>
+                <p>For inquiries or concerns regarding legal matters, please contact us at <a href="mailto:NitraDE@ok.de">NitraDE@ok.de.</a> This software uses icons from Google Fonts Material Icons.</p>
+            </div>
+        </div>
+        <footer class="footer">
+            <p>This game <img src="favicon.ico" alt="Game Logo" class="logo"> was created by Nitra Global <img src="icon128.png" alt="Our Logo" class="logo"></p>
+        </footer>
+    </div>
+
+    <script>
+        function changeLanguage() {
+            var language = document.getElementById("language-select").value;
+            var elements = document.querySelectorAll('[data-lang]');
+            elements.forEach(function(element) {
+                var key = element.getAttribute('data-lang');
+                element.textContent = translations[language][key];
+            });
+        }
+
+        var translations = {
+            "en": {
+                "music": "Music",
+                "music-credits": "Credits for the background music:",
+                "license": "Licensed under Creative Commons: By Attribution 4.0 License",
+                "font": "Font",
+                "font-credits": "Credits for the font:",
+                "font-name": "Playpen Sans on Google Fonts",
+                "sound-effects": "Sound Effects",
+                "sound-credits": "Credits for the button sound effect:",
+                "sound-effect-by": "Sound Effect by",
+                "from": "from",
+                "game-development-studio": "Game Development Studio",
+                "game-developers": "Game Developers"
+            },
+            "de": {
+                "music": "Musik",
+                "music-credits": "Credits für die Hintergrundmusik:",
+                "license": "Lizenziert unter Creative Commons: By Attribution 4.0 License",
+                "font": "Schriftart",
+                "font-credits": "Credits für die Schriftart:",
+                "font-name": "Playpen Sans auf Google Fonts",
+                "sound-effects": "Soundeffekte",
+                "sound-credits": "Credits für den Tastengeräusch-Effekt:",
+                "sound-effect-by": "Soundeffekt von",
+                "from": "von",
+                "game-development-studio": "Spieleentwicklungsstudio",
+                "game-developers": "Spieleentwickler"
+            }
+        };
+
+        // Funktion zum Ausblenden des Ladebildschirms und Anzeigen des Inhalts nach 3 Sekunden
+        window.onload = function() {
+            setTimeout(function() {
+                document.querySelector('.loading-screen').style.display = 'none';
+                document.querySelector('.container').style.display = 'block';
+                window.scroll({
+                    top: document.body.scrollHeight,
+                    behavior: 'smooth'
+                });
+            }, 3000);
+        };
+    </script>
+</body>
+</html>

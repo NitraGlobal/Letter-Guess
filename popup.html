@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playpen+Sans&display=swap">
+    <title>Letter Guess - Music Consent</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+</head>
+<body>
+    <div class="container">
+        <h1 id="music-consent-heading">Letter Guess - Music Consent</h1>
+        <p id="music-consent-description">This website uses background music for enhanced user experience. By clicking "Accept", you consent to the use of background music.</p>
+        <p>Credits for the background music:</p>
+        <p>"Sergio's Magic Dustbin" by Kevin MacLeod (incompetech.com)<br>
+        Licensed under Creative Commons: By Attribution 4.0 License<br>
+        <a href="http://creativecommons.org/licenses/by/4.0/">http://creativecommons.org/licenses/by/4.0/</a></p>
+        <p>Credits for the button sound effect:</p>
+        <p>Sound Effect by <a href="https://pixabay.com/users/liecio-3298866/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=132273">LIECIO</a> from <a href="https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=132273">Pixabay</a></p>
+        <div class="button-container">
+            <button id="accept-btn">Accept</button>
+        </div>
+    </div>
+    <button id="close-btn">&times;</button> <!-- X-Button für das Schließen des Popups -->
+
+    <!-- Button Sound Effect -->
+    <audio id="button-sound">
+        <source src="achive-sound-132273.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        // Check if user has accepted the music consent
+        var isMusicConsentAccepted = localStorage.getItem('musicConsentAccepted');
+
+        // If consent is not accepted, show the popup
+        if (!isMusicConsentAccepted) {
+            document.querySelector('.container').style.display = 'block';
+        }
+
+        document.getElementById('accept-btn').addEventListener('click', function() {
+            playButtonSound();
+            // Set consent accepted to true
+            localStorage.setItem('musicConsentAccepted', true);
+            // Close the popup after 10 seconds
+            setTimeout(function() {
+                document.querySelector('.container').style.display = 'none';
+            }, 10000);
+        });
+
+        function playButtonSound() {
+            var buttonSound = document.getElementById('button-sound');
+            buttonSound.currentTime = 0; // Rewind sound to start
+            buttonSound.play();
+        }
+    </script>
+
+    <!-- Dropdown-Menü für die Sprachumschaltung -->
+    <select id="language-select">
+        <option value="en">English</option>
+        <option value="de">Deutsch</option>
+    </select>  
+
+    <!-- Skript für die Sprachumschaltung -->
+    <script src="language.js"></script>
+</body>
+</html>
